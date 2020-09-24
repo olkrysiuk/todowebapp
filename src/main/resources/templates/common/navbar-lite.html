@@ -1,0 +1,15 @@
+<div th:fragment="navbar-lite">
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand border-primary" href="/">Simple ToDo List</a>
+            <div>
+                <form th:action="@{/logout}" method="post">
+                    <a class="btn btn-success" href="/login">Log In</a>
+                    <button type="submit" class="btn btn-info">Log out</button>
+                </form>
+            </div>
+
+        </div>
+    </nav>
+</div>

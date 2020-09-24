@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Task manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!--    <link th:href="@{/css/edit-project.css}" rel="stylesheet">-->
+
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+
+        <!-- Task Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Title -->
+            <h2 class="mt-4">Edit your project:</h2>
+            <form method="post" th:action="'/edit-project/' + ${project.id}">
+                <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                    <input type="text" th:value="${project.name}" name="name" placeholder="Note name..." class="form-control"><br>
+                    <button class="btn btn-success" type="submit">Update project</button>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+</body>
+</html>

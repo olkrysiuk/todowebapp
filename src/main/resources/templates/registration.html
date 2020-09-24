@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>ToDo WebApp - Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/registration.css}" rel="stylesheet">
+
+</head>
+<body>
+<!-- Navigation -->
+<div th:insert="common/navbar-lite.html :: navbar-lite"></div>
+<!-- Registration Form -->
+<div class="container-fluid h-100">
+    <div id="form" class="row justify-content-center align-items-center h-100">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+            <h2 class="h3 mb-3 font-weight-normal text-dark">Registration</h2>
+            <form th:action="@{/registration}" method="post">
+                <div class="form-group">
+                    <input class="form-control form-control-lg" placeholder="Type username..." type="text" name="username"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" placeholder=" Type password (at least 6 characters)..." type="password" name="password"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" placeholder="Retype password..." type="password" name="passwordConfirmation"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Register now</button>
+                </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            </form>
+            <p class="mt-5 mb-3 text-muted">&#x263A; 2020</p>
+            <div id="message-block">
+                <div class="alert alert-danger" th:if="${userExists}" th:text="${userExists}"></div>
+                <div class="alert alert-danger" th:if="${passwordMismatch}" th:text="${passwordMismatch}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- Custom JavaScript -->
+
+</html>
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Task manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!--    <link th:href="@{/css/edit-task.css}" rel="stylesheet">-->
+
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+
+        <!-- Task Content Column -->
+        <div class="col-lg-8">
+            <!-- Title -->
+            <h2 class="mt-4">Edit your current task:</h2>
+                <form method="post" th:action="'/edit-task/' + ${task.id}">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                    <input type="text" th:value="${task.name}" name="name" placeholder="Note name..." class="form-control"><br>
+                    <input type="checkbox" name="doneTask" th:value="true" th:checked="${!task.isStatus()}"><label> Mark as done</label><hr>
+                    <p th:text="'Current deadline:  ' + ${task.dateFormatter(task)}"></p>
+                    <p>Select new deadline:</p>
+                    <div th:insert="fragments.html :: date"></div><hr>
+<!--                    <div th:switch="${task.getPriority()}">-->
+<!--                        <p class="text-muted" th:case="1">Current priority: Low</p>-->
+<!--                        <p class="text-success" th:case="2">Current priority: Normal</p>-->
+<!--                        <p class="text-danger" th:case="3">Current priority: High</p>-->
+<!--                    </div>-->
+<!--                    <p>Choose priority:</p>-->
+<!--                    <div th:insert="fragments.html :: priority"></div><hr>-->
+                    <button type="submit" class="btn btn-success">Update task</button>
+                </form>
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+</body>
+</html>

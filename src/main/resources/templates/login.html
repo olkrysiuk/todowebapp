@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>ToDo WebApp - Login Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <div th:insert="common/navbar-lite.html :: navbar-lite"></div>
+    <!-- Login Form -->
+    <div class="container-fluid h-100">
+        <div id="form" class="row justify-content-center align-items-center h-100">
+            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+<!--                <img class="mb-4" src="/img/user-icon.png" alt="" width="72" height="72">-->
+                <h2 class="h3 mb-3 font-weight-normal text-dark">Log into application</h2>
+                <div>
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" placeholder="Username..." type="text" name="username"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" placeholder="Password..." type="password" name="password"/>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Enter</button>
+                    </div>
+                    <div class="bottom-action clearfix">
+<!--                        <label class="float-left form-check-label"><input type="checkbox" name="remember-me"> Remember me</label>-->
+                        <a href="/registration" class="float-right">Registration</a>
+                    </div>
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                </form>
+                </div>
+                <p class="mt-5 mb-3 text-muted">&#x263A; 2020</p>
+                <div id="message-block">
+                    <div class="alert alert-danger" th:if="${param.error}">Wrong username or password</div>
+                    <div class="alert alert-info" th:if="${param.logout}">You just logged out</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Custom JavaScript -->
+<!--<script th:src="@{/js/login-registration.js}"></script>-->
+
+</html>
+
